@@ -1,11 +1,14 @@
 server:
-  port: 9001
+  port: 0
 
 spring:
   application:
     name: user-service
 
 eureka:
+  instance:
+    #spring cloud 호스트 이름(ip), spring application 의 인스턴스 id 값, 포트를 랜덤하게 지정
+   instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
   client:
     #eureka 서버에 등록 가능 설정
     register-with-eureka: true
