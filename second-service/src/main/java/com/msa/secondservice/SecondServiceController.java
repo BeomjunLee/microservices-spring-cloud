@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class SecondServiceController {
 
-    @GetMapping("/service")
-    public String service() {
+    @GetMapping("/test")
+    public String test() {
         return "Second service";
     }
+
 }

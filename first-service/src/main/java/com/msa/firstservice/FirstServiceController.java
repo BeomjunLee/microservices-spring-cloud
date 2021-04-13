@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class FirstServiceController {
 
-    @GetMapping("/service")
-    public String service() {
+    @GetMapping("/test")
+    public String test() {
         return "First service";
     }
 }
