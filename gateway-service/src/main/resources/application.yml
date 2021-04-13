@@ -13,6 +13,13 @@ spring:
     name: gateway-service
   cloud:
     gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
+
       #List 형태로 여러가지 라우터 정보 등록 가능
       #path 로 오는 모든 요청은 uri 에서 처리
       routes:
@@ -34,4 +41,10 @@ spring:
           filters:
 #            - AddRequestHeader=second-request, second-request-headerValue2
 #            - AddResponseHeader=second-response, second-response-headerValue2
-            - CustomFilter
+            - name: CustomFilter
+            # 추가적인 파라미터를 넣으려면 - name 을 앞에 적어야지 구분 가능
+            - name: LoggingFilter
+              args:
+                baseMessage: This is Logging Filter
+                preLogger: true
+                postLogger: true
