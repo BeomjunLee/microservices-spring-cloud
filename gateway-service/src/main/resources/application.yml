@@ -3,8 +3,8 @@ server:
 
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defalutZone: http://localhost:8761/eureka
 
@@ -19,12 +19,11 @@ spring:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
-
       #List 형태로 여러가지 라우터 정보 등록 가능
       #path 로 오는 모든 요청은 uri 에서 처리
       routes:
         - id: first-service
-          uri: http://localhost:8081/
+          uri: lb://FIRST-SERVICE
           # 조건
           predicates:
             - Path=/first-service/**
@@ -34,7 +33,7 @@ spring:
             - CustomFilter
 
         - id: second-service
-          uri: http://localhost:8082/
+          uri: lb://SECOND-SERVICE
           # 조건
           predicates:
             - Path=/second-service/**
