@@ -1,8 +1,12 @@
 package com.msa.productservice.form;
-import lombok.Data;
+import lombok.*;
+
 import javax.validation.constraints.NotNull;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductForm {
 
     @NotNull(message = "상품명을 입력해주세요")

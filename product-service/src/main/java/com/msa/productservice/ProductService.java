@@ -51,7 +51,6 @@ public class ProductService {
                 .name(savedProduct.getName())
                 .stock(savedProduct.getStock())
                 .price(savedProduct.getPrice())
-                .createdAt(savedProduct.getCreatedAt())
                 .build();
     }
 
