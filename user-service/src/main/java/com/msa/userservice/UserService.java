@@ -60,12 +60,15 @@ public class UserService {
      * @return
      */
     public List<ResponseUser> getUserByAll() {
-        return userRepository.findAll().stream().map(user -> ResponseUser.builder()
-                                                                .id(user.getId())
-                                                                .username(user.getUsername())
-                                                                .name(user.getName())
-                                                                .createdAt(user.getCreatedAt())
-                                                                .build()).collect(Collectors.toList());
+        return userRepository.findAll()
+                .stream()
+                .map(user -> ResponseUser.builder()
+                        .id(user.getId())
+                        .username(user.getUsername())
+                        .name(user.getName())
+                        .createdAt(user.getCreatedAt())
+                        .build())
+                .collect(Collectors.toList());
     }
 
     /**
