@@ -57,7 +57,7 @@ public class UserService {
 
     /**
      * 전체 회원 찾기
-     * @return
+     * @return List<ResponseUser>
      */
     public List<ResponseUser> getUserByAll() {
         return userRepository.findAll()
@@ -74,7 +74,7 @@ public class UserService {
     /**
      * 회원 찾기
      * @param id 회원 pk id
-     * @return UserDto
+     * @return ResponseUser
      */
     public ResponseUser getUser(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다"));
