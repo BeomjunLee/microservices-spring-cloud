@@ -39,7 +39,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public SignupDto createUser(@RequestBody UserForm form) {
 
-        UserDto userDto = userService.saveUser(form);
+        UserDto userDto = userService.createUser(form);
 
         return SignupDto.builder()
                 .code(Code.SUCCESS)
@@ -55,7 +55,7 @@ public class UserController {
      */
     @GetMapping("/users")
     public ResponseEntity findUsers() {
-        return ResponseEntity.ok(userService.findUsers());
+        return ResponseEntity.ok(userService.getUserByAll());
     }
 
     /**
@@ -65,7 +65,7 @@ public class UserController {
      */
     @GetMapping("/users/{userId}")
     public ResponseEntity findUser(@PathVariable Long userId) {
-        return ResponseEntity.ok(userService.findUser(userId));
+        return ResponseEntity.ok(userService.getUser(userId));
     }
 
 }

@@ -24,14 +24,15 @@ public class UserService {
      * @param form 회원가입 폼
      * @return UserDto
      */
-    public UserDto saveUser(UserForm form) {
+    public UserDto createUser(UserForm form) {
+        duplicateUsername(form.getUsername());
+
         User user = User.builder()
                 .username(form.getUsername())
                 .password(passwordEncoder.encode(form.getPassword()))
                 .name(form.getName())
                 .build();
 
-        duplicateUsername(form.getUsername());
 
         User savedUser = userRepository.save(user);
 
@@ -58,7 +59,7 @@ public class UserService {
      * 전체 회원 찾기
      * @return
      */
-    public List<UserDto> findUsers() {
+    public List<UserDto> getUserByAll() {
         return userRepository.findAll().stream().map(user -> UserDto.builder()
                                                                 .id(user.getId())
                                                                 .username(user.getUsername())
@@ -72,7 +73,7 @@ public class UserService {
      * @param id 회원 pk id
      * @return UserDto
      */
-    public UserDto findUser(Long id) {
+    public UserDto getUser(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다"));
 
         return UserDto.builder()

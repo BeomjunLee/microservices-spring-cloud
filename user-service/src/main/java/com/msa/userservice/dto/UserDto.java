@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL) //해당 property 가 null 일 때 json 출력 x 
+@JsonInclude(JsonInclude.Include.NON_NULL) //해당 property 가 null 일 때 json 출력 x
 public class UserDto {
 
     private Long id;
