@@ -1,7 +1,7 @@
 package com.msa.userservice;
 
 import com.msa.userservice.form.UserForm;
-import com.msa.userservice.response.ResponseSignup;
+import com.msa.userservice.response.ResponseSignUp;
 import com.msa.userservice.response.ResponseUser;
 import com.msa.userservice.response.enums.Code;
 import lombok.RequiredArgsConstructor;
@@ -39,14 +39,14 @@ public class UserController {
      */
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseSignup createUser(@RequestBody UserForm form) {
+    public ResponseSignUp createUser(@RequestBody UserForm form) {
 
         ResponseUser responseUser = userService.createUser(form);
 
-        return ResponseSignup.builder()
+        return ResponseSignUp.builder()
                 .code(Code.SUCCESS)
                 .status(HttpStatus.CREATED.value())
-                .message("회원 가입 완료")
+                .message("회원 가입 성공")
                 .user(responseUser)
                 .build();
     }

@@ -1,11 +1,14 @@
 package com.msa.userservice.form;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class UserForm {
 
     @NotNull(message = "아이디를 입력해주세요")

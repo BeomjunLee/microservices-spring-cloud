@@ -50,7 +50,7 @@ public class UserService {
     private void duplicateUsername(String username) {
         if(userRepository.findByUsername(username) > 0) {
             log.error("아이디 중복");
-            throw new UsernameNotFoundException(username + " 은 중복된 아이디 입니다");
+            throw new UsernameNotFoundException("["+ username + "] 중복된 아이디 입니다");
         }
     }
 
