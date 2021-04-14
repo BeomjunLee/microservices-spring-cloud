@@ -1,5 +1,6 @@
-package com.msa.userservice.dto;
+package com.msa.userservice.response;
 
+import com.msa.userservice.dto.Code;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,11 +8,11 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class SignupDto {
+public class ResponseSignup {
 
     private Code code;
     private int status;
     private String message;
-    private UserDto user;
+    private ResponseUser user;
 
 }

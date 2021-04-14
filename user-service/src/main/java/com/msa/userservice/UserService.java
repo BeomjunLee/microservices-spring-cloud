@@ -1,6 +1,6 @@
 package com.msa.userservice;
 
-import com.msa.userservice.dto.ResponseUser;
+import com.msa.userservice.response.ResponseUser;
 import com.msa.userservice.dto.form.UserForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
