@@ -37,15 +37,15 @@ public class UserController {
      */
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public SignupDto createUser(@RequestBody UserForm form) {
+    public ResponseSignup createUser(@RequestBody UserForm form) {
 
-        UserDto userDto = userService.createUser(form);
+        ResponseUser responseUser = userService.createUser(form);
 
-        return SignupDto.builder()
+        return ResponseSignup.builder()
                 .code(Code.SUCCESS)
                 .status(HttpStatus.CREATED.value())
                 .message("회원 가입 완료")
-                .user(userDto)
+                .user(responseUser)
                 .build();
     }
 

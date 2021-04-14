@@ -1,6 +1,6 @@
 package com.msa.userservice;
 
-import com.msa.userservice.dto.UserDto;
+import com.msa.userservice.dto.ResponseUser;
 import com.msa.userservice.dto.form.UserForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class UserService {
      * @param form 회원가입 폼
      * @return UserDto
      */
-    public UserDto createUser(UserForm form) {
+    public ResponseUser createUser(UserForm form) {
         duplicateUsername(form.getUsername());
 
         User user = User.builder()
@@ -36,7 +36,7 @@ public class UserService {
 
         User savedUser = userRepository.save(user);
 
-        return UserDto.builder()
+        return ResponseUser.builder()
                 .id(savedUser.getId())
                 .username(savedUser.getUsername())
                 .name(savedUser.getName())
@@ -59,8 +59,8 @@ public class UserService {
      * 전체 회원 찾기
      * @return
      */
-    public List<UserDto> getUserByAll() {
-        return userRepository.findAll().stream().map(user -> UserDto.builder()
+    public List<ResponseUser> getUserByAll() {
+        return userRepository.findAll().stream().map(user -> ResponseUser.builder()
                                                                 .id(user.getId())
                                                                 .username(user.getUsername())
                                                                 .name(user.getName())
@@ -73,10 +73,10 @@ public class UserService {
      * @param id 회원 pk id
      * @return UserDto
      */
-    public UserDto getUser(Long id) {
+    public ResponseUser getUser(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다"));
 
-        return UserDto.builder()
+        return ResponseUser.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .name(user.getName())
