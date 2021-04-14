@@ -1,7 +1,7 @@
 package com.msa.userservice;
 
 import com.msa.userservice.dto.*;
-import com.msa.userservice.dto.form.UserForm;
+import com.msa.userservice.form.UserForm;
 import com.msa.userservice.response.ResponseSignup;
 import com.msa.userservice.response.ResponseUser;
 import lombok.RequiredArgsConstructor;
