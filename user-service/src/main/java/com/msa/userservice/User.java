@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -19,13 +20,17 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private String name;
 
-    @Column(updatable = false)
+    @Column(nullable = false, updatable = false, insertable = false)
+    @ColumnDefault(value = "CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
     @Builder
@@ -33,6 +38,5 @@ public class User {
         this.username = username;
         this.password = password;
         this.name = name;
-        this.createdAt = LocalDateTime.now();
     }
 }
