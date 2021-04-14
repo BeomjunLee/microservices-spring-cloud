@@ -1,6 +1,5 @@
 package com.msa.userservice.response;
 
-import com.msa.userservice.dto.Code;
 import com.msa.userservice.response.enums.Code;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
