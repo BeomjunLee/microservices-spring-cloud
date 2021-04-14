@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -17,7 +20,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     /**
-     * 회원 가입
+     * 회원 저장
      * @param form 회원가입 폼
      * @return UserDto
      */
@@ -49,5 +52,34 @@ public class UserService {
             log.error("아이디 중복");
             throw new UsernameNotFoundException(username + " 은 중복된 아이디 입니다");
         }
+    }
+
+    /**
+     * 전체 회원 찾기
+     * @return
+     */
+    public List<UserDto> findUsers() {
+        return userRepository.findAll().stream().map(user -> UserDto.builder()
+                                                                .id(user.getId())
+                                                                .username(user.getUsername())
+                                                                .name(user.getName())
+                                                                .createdAt(user.getCreatedAt())
+                                                                .build()).collect(Collectors.toList());
+    }
+
+    /**
+     * 회원 찾기
+     * @param id 회원 pk id
+     * @return UserDto
+     */
+    public UserDto findUser(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다"));
+
+        return UserDto.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .name(user.getName())
+                .createdAt(user.getCreatedAt())
+                .build();
     }
 }

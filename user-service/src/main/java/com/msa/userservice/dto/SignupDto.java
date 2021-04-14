@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class ResponseSignup {
+public class SignupDto {
 
     private Code code;
     private int status;
     private String message;
-    private UserDto userDto;
+    private UserDto user;
 
 }
