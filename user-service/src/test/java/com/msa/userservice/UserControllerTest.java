@@ -133,10 +133,10 @@ class UserControllerTest {
         ResultActions resultActions = requestLogin(requestLogin);
         //then
         resultActions
-                .andExpect(status().isBadRequest())
+                .andExpect(status().isUnauthorized())
                 .andExpect(result -> assertTrue(result.getResolvedException() instanceof BadCredentialsException))
                 .andExpect(jsonPath("code").value("FAIL"))
-                .andExpect(jsonPath("status").value(HttpStatus.BAD_REQUEST.value()))
+                .andExpect(jsonPath("status").value(HttpStatus.UNAUTHORIZED.value()))
                 .andExpect(jsonPath("message").value("로그인 실패"));
 
     }
