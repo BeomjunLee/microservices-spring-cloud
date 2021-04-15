@@ -15,6 +15,12 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
+    /**
+     * 주문 생성
+     * @param dto 주문 요청 dto
+     * @param userId 회원 pk id
+     * @return ResponseOrder
+     */
     public ResponseOrder createOrder(RequestOrder dto, Long userId) {
         Order order = Order.createOrder(dto, userId);
         Order savedOrder = orderRepository.save(order);
@@ -40,6 +46,11 @@ public class OrderService {
                 .build();
     }
 
+    /**
+     * 회원 주문 목록 찾기
+     * @param userId 회원 pk id
+     * @return List<ResponseOrder>
+     */
     public List<ResponseOrder> getOrdersByUserId(Long userId) {
 
         return orderRepository.findByUserId(userId)
