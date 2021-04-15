@@ -1,9 +1,11 @@
 package com.msa.userservice;
 
+import com.msa.userservice.exception.InvalidRefreshTokenException;
 import com.msa.userservice.response.Response;
 import com.msa.userservice.response.enums.Code;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,6 +23,32 @@ public class ExceptionController {
                 .status(HttpStatus.CONFLICT.value())
                 .message(e.getMessage())
                 .build());
+    }
+
+    /**
+     * 로그인 실패
+     */
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity badCredentials(Exception e) {
+        Response response = Response.builder()
+                .code(Code.FAIL)
+                .status(HttpStatus.BAD_REQUEST.value())
+                .message("로그인 실패")
+                .build();
+        return ResponseEntity.badRequest().body(response);
+    }
+
+    /**
+     * refreshToken 토큰 값 오류
+     */
+    @ExceptionHandler(InvalidRefreshTokenException.class)
+    public ResponseEntity invalidRefreshToken(Exception e) {
+        Response response = Response.builder()
+                .code(Code.FAIL)
+                .status(HttpStatus.UNAUTHORIZED.value())
+                .message(e.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 
 }

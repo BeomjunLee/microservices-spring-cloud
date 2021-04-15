@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -30,11 +31,23 @@ public class User {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<UserRole> roles;
+
+    private String refreshToken;
+
     @Builder
-    public User(String username, String password, String name) {
+    public User(String username, String password, String name, Set<UserRole> roles) {
         this.username = username;
         this.password = password;
         this.name = name;
+        this.roles = roles;
         this.createdAt = LocalDateTime.now();
+    }
+
+    //refreshToken 갱신
+    public void updateRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 }

@@ -1,6 +1,7 @@
 package com.msa.userservice.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.msa.userservice.UserRole;
 import com.msa.userservice.dto.OrderDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -18,6 +20,7 @@ public class ResponseUser {
     private Long id;
     private String username;
     private String name;
+    private Set<UserRole> roles;
     private LocalDateTime createdAt;
 
     private List<OrderDto> orders;
