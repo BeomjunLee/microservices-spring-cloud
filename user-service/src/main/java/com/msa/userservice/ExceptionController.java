@@ -32,10 +32,10 @@ public class ExceptionController {
     public ResponseEntity badCredentials(Exception e) {
         Response response = Response.builder()
                 .code(Code.FAIL)
-                .status(HttpStatus.BAD_REQUEST.value())
+                .status(HttpStatus.UNAUTHORIZED.value())
                 .message("로그인 실패")
                 .build();
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 
     /**
