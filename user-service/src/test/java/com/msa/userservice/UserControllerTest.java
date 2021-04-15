@@ -121,11 +121,11 @@ class UserControllerTest {
                 .andExpect(jsonPath("[0].id").value(savedUser0.getId()))
                 .andExpect(jsonPath("[0].username").value(savedUser0.getUsername()))
                 .andExpect(jsonPath("[0].name").value(savedUser0.getName()))
-                .andExpect(jsonPath("[0].createdAt").value(savedUser0.getCreatedAt().toString()))
+                .andExpect(jsonPath("[0].createdAt").exists())
                 .andExpect(jsonPath("[1].id").value(savedUser1.getId()))
                 .andExpect(jsonPath("[1].username").value(savedUser1.getUsername()))
                 .andExpect(jsonPath("[1].name").value(savedUser1.getName()))
-                .andExpect(jsonPath("[1].createdAt").value(savedUser1.getCreatedAt().toString()));
+                .andExpect(jsonPath("[1].createdAt").exists());
     }
 
     /**
