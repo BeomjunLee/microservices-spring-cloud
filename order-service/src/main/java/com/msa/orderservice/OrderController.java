@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/order-service")
+@RequestMapping("/")
 public class OrderController {
 
     private final OrderService orderService;

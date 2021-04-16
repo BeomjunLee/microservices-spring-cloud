@@ -99,7 +99,7 @@ class OrderControllerTest {
      * @param dto
      */
     private ResultActions requestCreateOrder(RequestOrder dto, Long userId) throws Exception {
-        return mockMvc.perform(post("/order-service/{userId}/orders", userId)
+        return mockMvc.perform(post("/{userId}/orders", userId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dto)))
                 .andDo(print());
@@ -110,7 +110,7 @@ class OrderControllerTest {
      * @param userId
      */
     private ResultActions requestFindMyOrders(Long userId) throws Exception{
-        return mockMvc.perform(get("/order-service/{userId}/orders", userId)
+        return mockMvc.perform(get("/{userId}/orders", userId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
     }

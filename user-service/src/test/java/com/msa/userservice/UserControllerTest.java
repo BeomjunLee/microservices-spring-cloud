@@ -239,7 +239,7 @@ class UserControllerTest {
      * @param form 회원 가입 form
      */
     private ResultActions requestSignUp(UserForm form) throws Exception {
-        return mockMvc.perform(post("/user-service/users")
+        return mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(form)))
                 .andDo(print());
@@ -250,7 +250,7 @@ class UserControllerTest {
      * @param userId 회원 pk id
      */
     private ResultActions requestFindUser(Long userId) throws Exception {
-        return mockMvc.perform(get("/user-service/users/{userId}", userId)
+        return mockMvc.perform(get("/users/{userId}", userId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
     }
@@ -259,7 +259,7 @@ class UserControllerTest {
      * 전체 회원 조회 요청
      */
     private ResultActions requestFindUsers() throws Exception {
-        return mockMvc.perform(get("/user-service/users")
+        return mockMvc.perform(get("/users")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
     }
@@ -269,7 +269,7 @@ class UserControllerTest {
      * @param requestLogin 로그인 요청 dto
      */
     private ResultActions requestLogin(RequestLogin requestLogin) throws Exception {
-        return mockMvc.perform(post("/user-service/login")
+        return mockMvc.perform(post("/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(requestLogin)))
                 .andDo(print());
@@ -280,7 +280,7 @@ class UserControllerTest {
      * @param requestRefreshToken accessToken 재발급 요청 dto
      */
     private ResultActions requestRefreshToken(RequestRefreshToken requestRefreshToken) throws Exception {
-        return mockMvc.perform(post("/user-service/refreshToken")
+        return mockMvc.perform(post("/refreshToken")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(requestRefreshToken)))
                 .andDo(print());

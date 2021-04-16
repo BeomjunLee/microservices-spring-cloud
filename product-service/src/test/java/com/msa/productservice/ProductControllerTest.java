@@ -93,7 +93,7 @@ class ProductControllerTest {
      * @param form 상품 form
      */
     private ResultActions requestProductEnroll(ProductForm form) throws Exception {
-        return mockMvc.perform(post("/product-service/products")
+        return mockMvc.perform(post("/products")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(form)))
                 .andDo(print());
@@ -103,7 +103,7 @@ class ProductControllerTest {
      * 전체 상품 조회 요청
      */
     private ResultActions requestFindProducts() throws Exception {
-        return mockMvc.perform(get("/product-service/products")
+        return mockMvc.perform(get("/products")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
     }
