@@ -47,16 +47,23 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
 
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/product-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/product-service/(?<segment>.*), /$\{segment}
 
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
 
         - id: first-service
           uri: lb://FIRST-SERVICE
@@ -83,3 +90,5 @@ spring:
                 baseMessage: This is Logging Filter
                 preLogger: true
                 postLogger: true
+jwt:
+  secretKey : mircoservicesJwtTestSecretKeyWithSpringCloud

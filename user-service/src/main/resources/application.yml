@@ -43,7 +43,7 @@ spring:
         default_batch_fetch_size: 100
 
 jwt:
-  secretKey : leebeomjunleebeomjunleebeomjunleebeomjunleebeomjunleebeomjun
+  secretKey : mircoservicesJwtTestSecretKeyWithSpringCloud
   #1h
   accessToken-valid-seconds : 600
   #24h
