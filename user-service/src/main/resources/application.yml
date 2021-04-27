@@ -42,9 +42,16 @@ spring:
         format_sql: true  //sql 이쁘게 보이게
         default_batch_fetch_size: 100
 
-jwt:
-  secretKey : mircoservicesJwtTestSecretKeyWithSpringCloud
-  #1h
-  accessToken-valid-seconds : 600
-  #24h
-  refreshToken-valid-seconds : 86400
+
+#jwt:
+#  secretKey : mircoservicesJwtTestSecretKeyWithSpringCloud
+#  #1h
+#  accessToken-valid-seconds : 600
+#  #24h
+#  refreshToken-valid-seconds : 86400
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans

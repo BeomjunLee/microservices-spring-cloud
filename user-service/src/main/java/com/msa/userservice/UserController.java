@@ -34,7 +34,12 @@ public class UserController {
 
     @GetMapping("/status-check")
     public String status(HttpServletRequest request) {
-        return "user-service 작동중 [PORT:" + request.getServerPort() + "]";
+        return "user-service 작동중\n"
+                + "[Local server port]" + env.getProperty("local.sever.port") + "\n"
+                + "[port]" + env.getProperty("server.port") + "\n"
+                + "[token secret]" + env.getProperty("jwt.secretKey") + "\n"
+                + "[accessToken-valid-seconds]" + env.getProperty("jwt.accessToken-valid-seconds") + "\n"
+                + "[refreshToken-valid-seconds]" + env.getProperty("jwt.refreshToken-valid-seconds");
     }
 
     @GetMapping("/welcome")

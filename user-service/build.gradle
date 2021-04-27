@@ -40,6 +40,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	//jpa query log
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.7'
+	//spring cloud config
+	implementation 'org.springframework.cloud:spring-cloud-starter-config:3.0.3'
+	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.0.2'
+	//spring boot actuator
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:2.4.5'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

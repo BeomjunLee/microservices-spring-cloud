@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+//                .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/**").permitAll()
                 .and()
                 .headers().frameOptions().disable(); //h2 db 오류 제거
