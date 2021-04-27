@@ -43,11 +43,21 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
             - Path=/user-service/**
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-            - AuthorizationHeaderFilter
+            - AuthorizationHeaderFilter # AuthorizationHeaderFilter 여기 위에 있는 설정들에겐 적용 안된다. (여기서부터 인증 적용)
+
 
         - id: product-service
           uri: lb://PRODUCT-SERVICE
@@ -90,5 +100,12 @@ spring:
                 baseMessage: This is Logging Filter
                 preLogger: true
                 postLogger: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace
+
 jwt:
   secretKey : mircoservicesJwtTestSecretKeyWithSpringCloud

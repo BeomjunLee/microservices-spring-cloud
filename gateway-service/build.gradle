@@ -32,6 +32,11 @@ dependencies {
     //jwt
     compile'io.jsonwebtoken:jjwt-api:0.11.2'
     runtime'io.jsonwebtoken:jjwt-impl:0.11.2', 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+    //spring cloud config
+    implementation 'org.springframework.cloud:spring-cloud-starter-config:3.0.3'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.0.2'
+    //spring boot actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.4.5'
 }
 
 dependencyManagement {
