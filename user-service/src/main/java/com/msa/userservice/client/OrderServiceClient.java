@@ -11,6 +11,6 @@ import java.util.List;
 @FeignClient(name = "order-service")
 public interface OrderServiceClient {
 
-    @GetMapping("/{userId}/orders_fail")
+    @GetMapping("/{userId}/orders")
     List<ResponseOrder> getOrders(@PathVariable("userId") Long userId);
 }
