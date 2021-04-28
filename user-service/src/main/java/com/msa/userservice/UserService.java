@@ -1,5 +1,6 @@
 package com.msa.userservice;
 
+import com.msa.userservice.client.OrderServiceClient;
 import com.msa.userservice.exception.InvalidRefreshTokenException;
 import com.msa.userservice.exception.RefreshTokenGrantTypeException;
 import com.msa.userservice.form.UserForm;
@@ -10,11 +11,7 @@ import com.msa.userservice.response.ResponseUser;
 import com.msa.userservice.security.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,7 +21,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -40,6 +36,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
+    private final OrderServiceClient orderServiceClient;
 //    private final RestTemplate restTemplate;
 //    private final Environment env;
 
@@ -181,6 +178,7 @@ public class UserService implements UserDetailsService {
 
         //feign client 사용
 
+        List<ResponseOrder> orders = orderServiceClient.getOrders(id);
 
         return ResponseUser.builder()
                 .id(user.getId())

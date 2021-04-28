@@ -1,5 +1,6 @@
 package com.msa.userservice.config;
 
+import feign.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +22,14 @@ public class AppConfig {
         characterEncodingFilter.setForceEncoding(true);
         return characterEncodingFilter;
     }
+
+    //feign client Log
+    @Bean
+    public Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
+    }
+
+    //FeignErrorDecoder
 
 //    @Bean
 //    @LoadBalanced

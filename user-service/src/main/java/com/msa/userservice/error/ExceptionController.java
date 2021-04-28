@@ -1,4 +1,4 @@
-package com.msa.userservice;
+package com.msa.userservice.error;
 
 import com.msa.userservice.exception.InvalidRefreshTokenException;
 import com.msa.userservice.response.Response;
@@ -9,6 +9,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
 
 @ControllerAdvice
 public class ExceptionController {
@@ -49,6 +50,19 @@ public class ExceptionController {
                 .message(e.getMessage())
                 .build();
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
+
+    /**
+     * getOrder 오류
+     */
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity getOrderError(Exception e) {
+        Response response = Response.builder()
+                .code(Code.FAIL)
+                .status(HttpStatus.NOT_FOUND.value())
+                .message(e.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
 }
