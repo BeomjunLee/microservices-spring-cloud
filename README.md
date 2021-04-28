@@ -20,3 +20,9 @@ https://blog.naver.com/qjawnswkd/222309243624<br>
 
 ### Spring Cloud Gateway + Microservices + Eureka 연동, 로드 밸런싱 처리 해보기
 https://blog.naver.com/qjawnswkd/222309279115<br>
+
+### Spring Cloud Gateway RewritePath 사용해 uri 수정
+https://blog.naver.com/qjawnswkd/222311687196<br>
+
+### Spring Cloud Config 적용해보기 (Spring Boot Actuator, Profiles Configuration)
+https://blog.naver.com/qjawnswkd/222325411466<br>
