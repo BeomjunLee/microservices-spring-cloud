@@ -50,8 +50,14 @@ spring:
 #  #24h
 #  refreshToken-valid-seconds : 86400
 
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
 management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans
+        include: refresh,health,beans,httptrace,busrefresh

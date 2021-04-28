@@ -18,6 +18,11 @@ ext {
 
 dependencies {
     implementation 'org.springframework.cloud:spring-cloud-config-server'
+    //Actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.4.5'
+    //Spring Cloud Bus AMQP
+    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp:3.0.2'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
