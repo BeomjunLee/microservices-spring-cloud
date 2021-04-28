@@ -47,6 +47,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator:2.4.5'
 	//Spring Cloud Bus AMQP
 	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp:3.0.2'
+	//feign client
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.2'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

@@ -21,4 +21,11 @@ public class AppConfig {
         characterEncodingFilter.setForceEncoding(true);
         return characterEncodingFilter;
     }
+
+//    @Bean
+//    @LoadBalanced
+//    public RestTemplate restTemplate() {
+//        return new RestTemplate();
+//    }
+
 }

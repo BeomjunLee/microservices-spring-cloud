@@ -5,11 +5,16 @@ import com.msa.userservice.exception.RefreshTokenGrantTypeException;
 import com.msa.userservice.form.UserForm;
 import com.msa.userservice.request.RequestRefreshToken;
 import com.msa.userservice.response.ResponseLogin;
+import com.msa.userservice.response.ResponseOrder;
 import com.msa.userservice.response.ResponseUser;
 import com.msa.userservice.security.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -34,6 +40,8 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
+//    private final RestTemplate restTemplate;
+//    private final Environment env;
 
     /**
      * 로그인 요청 회원 찾기
@@ -164,12 +172,24 @@ public class UserService implements UserDetailsService {
     public ResponseUser getUser(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다"));
 
+//        //RestTemplate 사용
+//        String orderUrl = String.format(env.getProperty("order_service.url"), id);
+//        ResponseEntity<List<ResponseOrder>> ordersResponse =
+//                restTemplate.exchange(orderUrl,HttpMethod.GET, null, new ParameterizedTypeReference<List<ResponseOrder>>() {
+//        });
+//        List<ResponseOrder> orders = ordersResponse.getBody();
+
+        //feign client 사용
+
+
         return ResponseUser.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .name(user.getName())
                 .roles(user.getRoles())
                 .createdAt(user.getCreatedAt())
+                .orders(orders)
                 .build();
     }
+
 }

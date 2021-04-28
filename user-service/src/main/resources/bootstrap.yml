@@ -3,6 +3,6 @@ spring:
     config:
       # config 설정한 서버 주소
       uri: http://127.0.0.1:8888
-      name: ecommerce
+      name: user-service
   profiles:
     active: dev
