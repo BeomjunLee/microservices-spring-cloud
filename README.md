@@ -26,3 +26,9 @@ https://blog.naver.com/qjawnswkd/222311687196<br>
 
 ### Spring Cloud Config 적용해보기 (Spring Boot Actuator, Profiles Configuration)
 https://blog.naver.com/qjawnswkd/222325411466<br>
+
+### Spring Cloud Bus 적용 (RabbitMQ 설치 및 적용)
+https://blog.naver.com/qjawnswkd/222326190466<br>
+
+### Microservice 간 통신 (RestTemplate, FeignClient, ErrorDecoder 예외처리), 데이터 동기화 문제
+https://blog.naver.com/qjawnswkd/222326922628<br>
