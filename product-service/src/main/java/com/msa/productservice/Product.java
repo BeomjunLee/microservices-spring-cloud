@@ -40,4 +40,8 @@ public class Product {
         this.price = price;
         this.createdAt = LocalDateTime.now();
     }
+
+    public void updateStock(int count) {
+        this.stock = stock - count;
+    }
 }

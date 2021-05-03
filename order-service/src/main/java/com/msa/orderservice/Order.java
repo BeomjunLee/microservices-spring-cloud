@@ -1,6 +1,4 @@
 package com.msa.orderservice;
-
-import com.msa.orderservice.dto.OrderDto;
 import com.msa.orderservice.request.RequestOrder;
 import lombok.AccessLevel;
 import lombok.Builder;
