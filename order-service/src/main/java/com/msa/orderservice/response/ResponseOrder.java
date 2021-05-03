@@ -19,4 +19,6 @@ public class ResponseOrder {
     private int count;
     private int totalPrice;
     private LocalDateTime createdAt;
+    private Long productId;
+    private Long userId;
 }

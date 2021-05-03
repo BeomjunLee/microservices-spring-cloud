@@ -1,6 +1,4 @@
 package com.msa.orderservice;
-
-import com.msa.orderservice.dto.OrderDto;
 import com.msa.orderservice.request.RequestOrder;
 import com.msa.orderservice.response.ResponseOrder;
 import lombok.RequiredArgsConstructor;
@@ -32,13 +30,15 @@ public class OrderService {
                 .count(savedOrder.getCount())
                 .totalPrice(savedOrder.getTotalPrice())
                 .createdAt(savedOrder.getCreatedAt())
+                .productId(dto.getProductId())
+                .userId(userId)
                 .build();
     }
 
-    public OrderDto getOrder(Long id) {
+    public ResponseOrder getOrder(Long id) {
         Order order = orderRepository.findById(id).orElseThrow();
 
-        return OrderDto.builder()
+        return ResponseOrder.builder()
                 //TODO name
                 .price(order.getPrice())
                 .count(order.getCount())

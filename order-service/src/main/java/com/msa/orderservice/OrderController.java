@@ -1,5 +1,5 @@
 package com.msa.orderservice;
-
+import com.msa.orderservice.kafka.KafkaProducer;
 import com.msa.orderservice.request.RequestOrder;
 import com.msa.orderservice.response.ResponseOrder;
 import com.msa.orderservice.response.ResponseOrderComp;
@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public class OrderController {
 
     private final OrderService orderService;
+    private final KafkaProducer kafkaProducer;
 
     @GetMapping("/status-check")
     public String status(HttpServletRequest request) {
@@ -34,6 +35,9 @@ public class OrderController {
     public ResponseOrderComp createOrder(@PathVariable Long userId,
                                       @RequestBody RequestOrder requestOrder) {
         ResponseOrder order = orderService.createOrder(requestOrder, userId);
+
+        //kafka topic 에 메세지 전달
+        kafkaProducer.send("example-product-topic", order);
 
         return ResponseOrderComp.builder()
                         .code(Code.SUCCESS)
