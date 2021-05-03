@@ -16,6 +16,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
 
+    //topic 의 json 데이터를 받아와서 deserialize
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> properties = new HashMap<>();
