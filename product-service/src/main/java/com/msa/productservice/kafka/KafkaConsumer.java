@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.msa.productservice.Product;
 import com.msa.productservice.ProductRepository;
+import com.msa.productservice.exception.NotFoundProductException;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ public class KafkaConsumer {
 
     //example-product-topic 이라는 곳에 데이터가 전달되면 메서드 실행
     @KafkaListener(topics = "example-product-topic")
-    public void updateStock(String kafkaMessage) throws NotFoundException {
+    public void updateStock(String kafkaMessage) throws NotFoundProductException {
         log.info("Kafka Message : -> " + kafkaMessage);
 
         //kafka 로 직렬화 했던걸 역직렬화 해서 사용해야된다.
@@ -35,10 +36,10 @@ public class KafkaConsumer {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        long productId = Long.parseLong((String) map.get("productId"));
-        int count = Integer.parseInt((String) map.get("count"));
+        Long productId = Long.parseLong(map.get("productId").toString());
+        int count = Integer.parseInt(map.get("count").toString());
 
-        Product product = productRepository.findById(productId).orElseThrow(() -> new NotFoundException("상품을 찾을 수 없습니다"));
+        Product product = productRepository.findById(productId).orElseThrow(() -> new NotFoundProductException("상품을 찾을 수 없습니다"));
         product.updateStock(count);
         productRepository.save(product);
     }
