@@ -32,3 +32,21 @@ https://blog.naver.com/qjawnswkd/222326190466<br>
 
 ### Microservice 간 통신 (RestTemplate, FeignClient, ErrorDecoder 예외처리), 데이터 동기화 문제
 https://blog.naver.com/qjawnswkd/222326922628<br>
+
+### Spring Cloud 데이터 동기화 문제
+https://blog.naver.com/qjawnswkd/222329002946<br>
+
+### Apache Kafka 동작 방식
+https://blog.naver.com/qjawnswkd/222331805440<br>
+
+### Apache Kafka 로 Producer, Consumer, Topic 데이터 전송 테스트 해보기
+https://blog.naver.com/qjawnswkd/222332265135<br>
+
+### Kafka Connect 개념, 설치
+https://blog.naver.com/qjawnswkd/222333627676<br>
+
+### Kafka connect 로 Source connect, Sink connect 생성 및 테스트 해보기
+https://blog.naver.com/qjawnswkd/222334228900<br>
+
+### kafka 를 사용해 order-service, product-service 데이터 동기화해보기 (Consumer, Producer)
+https://blog.naver.com/qjawnswkd/222336568230<br>
