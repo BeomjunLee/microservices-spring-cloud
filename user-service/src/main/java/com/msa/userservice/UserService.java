@@ -11,6 +11,8 @@ import com.msa.userservice.response.ResponseUser;
 import com.msa.userservice.security.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +40,7 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
     private final OrderServiceClient orderServiceClient;
+    private final CircuitBreakerFactory circuitBreakerFactory;
 //    private final RestTemplate restTemplate;
 //    private final Environment env;
 
@@ -177,8 +181,12 @@ public class UserService implements UserDetailsService {
 //        List<ResponseOrder> orders = ordersResponse.getBody();
 
         //feign client 사용
+//        List<ResponseOrder> orders = orderServiceClient.getOrders(id);
 
-        List<ResponseOrder> orders = orderServiceClient.getOrders(id);
+        //circuit Breaker
+        CircuitBreaker circuitbreaker = circuitBreakerFactory.create("circuitbreaker"); //circuitBreaker 의 이름 설정
+        List<ResponseOrder> orderList = circuitbreaker.run(() -> orderServiceClient.getOrders(id),  //정상 작동했을 경우 feign Client 통신
+                throwable -> new ArrayList<>());//문제가 생겼을 경우 빈 ArrayList 반환
 
         return ResponseUser.builder()
                 .id(user.getId())
@@ -186,7 +194,7 @@ public class UserService implements UserDetailsService {
                 .name(user.getName())
                 .roles(user.getRoles())
                 .createdAt(user.getCreatedAt())
-                .orders(orders)
+                .orders(orderList)
                 .build();
     }
 

@@ -56,5 +56,4 @@ public class OrderController {
     public ResponseEntity getMyOrder(@PathVariable Long userId) {
         return ResponseEntity.ok(orderService.getOrdersByUserId(userId));
     }
-
 }
