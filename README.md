@@ -50,3 +50,6 @@ https://blog.naver.com/qjawnswkd/222334228900<br>
 
 ### kafka 를 사용해 order-service, product-service 데이터 동기화해보기 (Consumer, Producer)
 https://blog.naver.com/qjawnswkd/222336568230<br>
+
+### Resilience4J 를 통한 Microservice 들의 통신간 에러 처리(CircuitBreaker)
+https://blog.naver.com/qjawnswkd/222342924847<br>
