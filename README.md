@@ -1,7 +1,9 @@
 ## microservices-spring-cloud
 <img src="https://user-images.githubusercontent.com/69130921/114441322-34880b80-9c06-11eb-99f3-ba9b1d14805b.png">
 
-김영한 님의 마이크로서비스 여행기 라는 동영상을 시청하고 정말 매력적인 MSA 을 공부해보고 싶어 공부하면서 블로그에 포스팅 하였습니다. (현재 공부중입니다)<br><br>
+[김영한 님의 마이크로서비스 여행기](/https://www.youtube.com/watch?v=BnS6343GTkY) 라는 동영상을 시청하고 정말 매력적인 MSA 을 공부해보고 싶어 공부하면서 블로그에 포스팅 하였습니다. (현재 공부중입니다)<br>
+마이크로서비스 여행기는 정말 재미있는 내용이니 시간이 나신다면 시청하면 좋을 것 같습니다.
+
 
 ### Cloud Native,12factors, Microservices 에 대해
 https://blog.naver.com/qjawnswkd/222306768374 <br>
